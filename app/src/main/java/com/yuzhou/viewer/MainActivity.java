@@ -35,8 +35,6 @@ public class MainActivity extends Activity
         listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
-        new InstagramRestClient(eventBus).fetchPopularMedia();
-
         swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
@@ -50,6 +48,8 @@ public class MainActivity extends Activity
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+        new InstagramRestClient(eventBus).fetchPopularMedia();
     }
 
     @Override
