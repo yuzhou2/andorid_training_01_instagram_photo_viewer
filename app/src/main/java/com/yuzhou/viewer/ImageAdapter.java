@@ -1,6 +1,7 @@
 package com.yuzhou.viewer;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,13 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ocpsoft.pretty.time.PrettyTime;
 import com.squareup.picasso.Picasso;
 import com.yuzhou.viewer.model.Image;
 import com.yuzhou.viewer.model.ImageItem;
 import com.yuzhou.viewer.model.User;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -60,7 +59,7 @@ public class ImageAdapter extends ArrayAdapter<ImageItem>
         viewHolder.caption.setText(item.getCaption().getText());
         viewHolder.creator.setText(String.format(sCreator, user.getUserName()));
         viewHolder.likes.setText(String.format(sLikes, item.getLikes().getCount()));
-        viewHolder.time.setText(new PrettyTime().format(new Timestamp(item.getCreatedTime())));
+        viewHolder.time.setText(DateUtils.getRelativeTimeSpanString(item.getCreatedTime() * 1000, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS));
 
         return convertView;
     }
